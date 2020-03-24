@@ -91,8 +91,6 @@ export default {
       email:'',
       password:'',
       confirmPassword:'',
-     
-
     }
   },
   validations:{

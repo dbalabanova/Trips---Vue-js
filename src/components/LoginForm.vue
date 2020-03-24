@@ -1,18 +1,39 @@
 <template>
   <div class="loginForm">
-<form>
+<form @submit.prevent="onSubmit">
   <fieldset>
     <div class="form-group">
-      <label for="exampleInputEmail1">Email address</label>
-      <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
-      <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+      <label for="username">Username</label>
+      <input 
+      @blur="$v.username.$touch()"
+      v-model="username"
+      type="username" 
+      class="form-control" 
+      id="username" 
+      placeholder="Enter username"
+      >
+      <template v-if="$v.username.$error">
+      <p v-if="!$v.username.required" class="alert alert-danger">This field is required </p>
+      <p v-if="!$v.username.minLength" class="alert alert-danger">Username must be at least 6 symbols </p>
+      </template>
     </div>
     <div class="form-group">
-      <label for="exampleInputPassword1">Password</label>
-      <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+      <label for="password">Password</label>
+      <input 
+      @blur="$v.password.$touch()"
+      v-model="password"
+      type="password" 
+      class="form-control" 
+      id="password" 
+      placeholder="Password"
+      >
+    <template v-if="$v.password.$error">
+      <p v-if="!$v.password.required" class="alert alert-danger">This field is required </p>
+      <p v-if="!$v.password.minLength" class="alert alert-danger">Password must be at least 6 symbols </p>
+      </template>
     </div>
     
-<button type="button" class="btn btn-primary">Login</button>
+<button type="submit" class="btn btn-primary">Login</button>
 
   </fieldset>
 </form>
@@ -20,9 +41,32 @@
 </template>
 
 <script>
+import {required,minLength} from 'vuelidate/lib/validators'
+
 export default {
   name: 'AppLogin',
-  
+  data() {
+    return {
+      username:'',
+      password: '',
+    }
+  },
+  validations:{
+    username:{
+      required,
+      minLength:minLength(6)
+    },
+    password:{
+      required,
+      minLength:minLength(6)
+    }
+  },
+  methods:{
+    onSubmit(){
+      this.$v.touch()
+      if(this.$v.$invalid) { return}
+    }
+  }
 }
 </script>
 
@@ -37,5 +81,6 @@ export default {
     background-repeat: no-repeat;
     background-size: cover;
  }
+
 
 </style>

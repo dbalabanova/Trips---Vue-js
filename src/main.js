@@ -9,8 +9,8 @@ import Landing from './components/Landing.vue'
 import LoginForm from './components/LoginForm.vue'
 import RegisterForm from './components/RegisterForm.vue'
 
-Vue.use(VueRouter)
 Vue.use(Vuelidate)
+Vue.use(VueRouter)
 Vue.config.productionTip = false
 Vue.component('AppHeader', Header)
 Vue.component('AppFooter', Footer)
