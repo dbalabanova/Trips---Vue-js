@@ -6,7 +6,7 @@
 
 <script>
 export default {
-  name: 'Landing',
+  name: 'AppLanding',
   props: {
     msg: String
   }
@@ -28,11 +28,4 @@ export default {
 }
 
 
-/* img {
-    pointer-events: none;
-    position: relative;
-    width: 100%;
-    height: 100%;
-    
-} */
 </style>

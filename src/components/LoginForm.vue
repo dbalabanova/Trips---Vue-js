@@ -12,6 +12,8 @@
       <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
     </div>
     
+<button type="button" class="btn btn-primary">Login</button>
+
   </fieldset>
 </form>
   </div>
@@ -19,7 +21,7 @@
 
 <script>
 export default {
-  name: 'LoginForm',
+  name: 'AppLogin',
   
 }
 </script>
