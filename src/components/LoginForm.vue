@@ -3,18 +3,18 @@
 <form @submit.prevent="onSubmit">
   <fieldset>
     <div class="form-group">
-      <label for="username">Username</label>
+      <label for="email">Email</label>
       <input 
-      @blur="$v.username.$touch()"
-      v-model="username"
-      type="username" 
+      @blur="$v.email.$touch()"
+      v-model="email"
+      type="email" 
       class="form-control" 
-      id="username" 
-      placeholder="Enter username"
+      id="email" 
+      placeholder="Enter email"
       >
-      <template v-if="$v.username.$error">
-      <p v-if="!$v.username.required" class="alert alert-danger">This field is required </p>
-      <p v-if="!$v.username.minLength" class="alert alert-danger">Username must be at least 6 symbols </p>
+      <template v-if="$v.email.$error">
+      <p v-if="!$v.email.required" class="alert alert-danger">This field is required </p>
+      <p v-if="!$v.email.email" class="alert alert-danger">Invalid email</p>
       </template>
     </div>
     <div class="form-group">
@@ -33,7 +33,7 @@
       </template>
     </div>
     
-<button type="submit" class="btn btn-primary">Login</button>
+<button :disabled="$v.$invalid" type="submit" class="btn btn-primary">Login</button>
 
   </fieldset>
 </form>
@@ -41,20 +41,20 @@
 </template>
 
 <script>
-import {required,minLength} from 'vuelidate/lib/validators'
+import {required,email,minLength} from 'vuelidate/lib/validators'
 
 export default {
   name: 'AppLogin',
   data() {
     return {
-      username:'',
+      email:'',
       password: '',
     }
   },
   validations:{
-    username:{
+    email:{
       required,
-      minLength:minLength(6)
+      email
     },
     password:{
       required,

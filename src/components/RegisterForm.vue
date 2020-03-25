@@ -2,20 +2,7 @@
   <div class="registerForm">
 <form @submit.prevent="onSubmit" >
   <fieldset>
-      <div class="form-group">
-      <label for="username">Username</label>
-      <input 
-      @blur="$v.username.$touch()"
-      v-model="username"
-      class="form-control" 
-      id="username" 
-      placeholder="Enter username"
-      >
-      <template v-if="$v.username.$error">
-      <p class="alert alert-danger" v-if="!$v.username.required">Username is required</p>
-      <p class="alert alert-danger" v-if="!$v.username.minLength">Username should be ate least 6 symbols</p>
-      </template>
-    </div>
+
     <div class="form-group">
       <label for="email">Email address</label>
       <input 
@@ -62,19 +49,9 @@
       <!-- </template> -->
     </div>
     
-    <button type="submit" class="btn btn-primary">
+    <button :disabled="$v.$invalid" type="submit" class="btn btn-primary">
      Register
      </button>
-
-     
-     <p>
-      {{email}}
-     </p>
-      <p>
-      {{password}}
-      <p>
-      {{confirmPassword}}
-       </p>
     
   </fieldset>
 </form>
@@ -87,7 +64,6 @@ export default {
   name: 'AppRegister',
   data(){
     return {
-      username:'',
       email:'',
       password:'',
       confirmPassword:'',
@@ -97,10 +73,6 @@ export default {
     email:{
       required,
       email
-    },
-    username:{
-      required,
-      minLength:minLength(6)
     },
     password:{
       required,
@@ -114,7 +86,6 @@ export default {
     onSubmit(){
       this.$v.$touch()
       if(this.$v.$invalid) { return}
-      console.log(this.$v.username)
     }
   }
 }
