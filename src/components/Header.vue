@@ -34,7 +34,13 @@
         <!-- <a class="nav-link"  href="/login" >Login</a> -->
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="/register">Register</a>
+        <router-link
+         to="/register"
+          class="nav-item nav-link"
+          active-class="active"
+          exact
+        > Register</router-link>
+        <!-- <a class="nav-link" href="/register">Register</a> -->
       </li>
       <li class="nav-item">
         <a class="nav-link" href="#">Create Trip</a>

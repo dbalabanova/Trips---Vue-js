@@ -2,7 +2,24 @@
   <div class="registerForm">
 <form @submit.prevent="onSubmit" >
   <fieldset>
+    <legend>Register Form</legend>
+    <div v-if="error" class="alert alert-danger">{{error}}</div>
 
+        <!-- <div class="form-group">
+      <label for="username">Username</label>
+      <input 
+      @blur="$v.username.$touch()"
+      v-model="username"
+      type="username" 
+      class="form-control" 
+      id="username" 
+      placeholder="Enter username"
+      >
+      <template v-if="$v.username.$error">
+      <p v-if="!$v.email.required" class="alert alert-danger">This field is required</p>
+      <p v-if="!$v.email.minLength" class="alert alert-danger">Username must be at least 6 symbols</p>
+      </template>
+    </div> -->
     <div class="form-group">
       <label for="email">Email address</label>
       <input 
@@ -60,16 +77,24 @@
 
 <script>
 import {required, email, minLength,sameAs} from 'vuelidate/lib/validators'
+import * as firebase from 'firebase'
+
 export default {
   name: 'AppRegister',
   data(){
     return {
+      // username:'',
       email:'',
       password:'',
       confirmPassword:'',
+      error:null
     }
   },
   validations:{
+    // username:{
+    //   required,
+    //   minLength:minLength(6)
+    // },
     email:{
       required,
       email
@@ -86,6 +111,23 @@ export default {
     onSubmit(){
       this.$v.$touch()
       if(this.$v.$invalid) { return}
+
+      firebase
+        .auth()
+        .createUserWithEmailAndPassword(this.email, this.password)
+        .then(data => {
+          data.user
+            .updateProfile({
+              // displayName: this.username
+            })
+            .then(() => {this.$router.replace({ path: "/login" })});
+        })
+          
+        
+        .catch(err => {
+          this.error = err.message;
+        });
+
     }
   }
 }
