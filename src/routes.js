@@ -1,7 +1,7 @@
 
-import Landing from './components/Landing.vue'
-import LoginForm from './components/LoginForm.vue'
-import RegisterForm from './components/RegisterForm.vue'
+import Landing from './components/Landing'
+import LoginForm from './components/auth/LoginForm'
+import RegisterForm from './components/auth/RegisterForm'
 
 export default [
     {path:'/', component: Landing},

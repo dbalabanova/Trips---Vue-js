@@ -95,8 +95,8 @@ export default {
         .auth()
         .signInWithEmailAndPassword(this.email, this.password)
         .then((data) => {
-          console.log(data)
-          this.$router.replace({path:'/' });
+          console.log(data.user.displayName)
+          // this.$router.replace({path:'/' })
         })
         .catch(err => {
           this.error = err.message;

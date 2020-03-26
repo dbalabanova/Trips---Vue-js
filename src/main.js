@@ -2,12 +2,13 @@ import Vue from 'vue'
 import App from './App.vue'
 import VueRouter from 'vue-router'
 import Vuelidate from 'vuelidate'
+import vuetify from './plugins/vuetify'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import * as firebase from 'firebase'
 import routes from './routes.js'
 
-import Header from './components/Header.vue'
-import Footer from './components/Footer.vue'
+import Header from './components/shared/Header'
+import Footer from './components/shared/Footer'
 
 Vue.use(Vuelidate)
 Vue.use(VueRouter)
@@ -33,5 +34,6 @@ const router = new VueRouter({routes,mode:"history"})
 
 new Vue({
   render: h => h(App),
+  vuetify,
   router
 }).$mount('#app')

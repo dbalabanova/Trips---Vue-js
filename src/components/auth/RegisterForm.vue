@@ -5,7 +5,7 @@
     <legend>Register Form</legend>
     <div v-if="error" class="alert alert-danger">{{error}}</div>
 
-        <!-- <div class="form-group">
+        <div class="form-group">
       <label for="username">Username</label>
       <input 
       @blur="$v.username.$touch()"
@@ -19,7 +19,7 @@
       <p v-if="!$v.email.required" class="alert alert-danger">This field is required</p>
       <p v-if="!$v.email.minLength" class="alert alert-danger">Username must be at least 6 symbols</p>
       </template>
-    </div> -->
+    </div>
     <div class="form-group">
       <label for="email">Email address</label>
       <input 
@@ -83,7 +83,7 @@ export default {
   name: 'AppRegister',
   data(){
     return {
-      // username:'',
+      username:'',
       email:'',
       password:'',
       confirmPassword:'',
@@ -91,10 +91,10 @@ export default {
     }
   },
   validations:{
-    // username:{
-    //   required,
-    //   minLength:minLength(6)
-    // },
+    username:{
+      required,
+      minLength:minLength(6)
+    },
     email:{
       required,
       email
@@ -118,7 +118,7 @@ export default {
         .then(data => {
           data.user
             .updateProfile({
-              // displayName: this.username
+              displayName: this.username
             })
             .then(() => {this.$router.replace({ path: "/login" })});
         })
