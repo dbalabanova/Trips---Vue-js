@@ -1,9 +1,8 @@
 <template>
   <div class="loginForm">
-    <!-- <form @submit.prevent="onSubmit"> -->
     <v-app class="nobackground">
       <v-form @submit.prevent="onSubmit">
-                <div>
+        <div>
           <v-alert v-if="error" type="error">{{error}}</v-alert>
         </div>
         <v-container>
@@ -68,7 +67,6 @@
         </v-row>
       </v-form>
     </v-app>
-    <!-- </form> -->
   </div>
 </template>
 
