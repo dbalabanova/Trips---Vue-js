@@ -1,17 +1,18 @@
 import Vue from 'vue'
 import App from './App.vue'
-import VueRouter from 'vue-router'
+import router from './plugins/router'
+// import VueRouter from 'vue-router'
 import Vuelidate from 'vuelidate'
 import vuetify from './plugins/vuetify'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import * as firebase from 'firebase'
-import routes from './routes.js'
+// import routes from './routes.js'
 
 import Header from './components/shared/Header'
 import Footer from './components/shared/Footer'
 
 Vue.use(Vuelidate)
-Vue.use(VueRouter)
+// Vue.use(VueRouter)
 Vue.config.productionTip = false
 Vue.component('AppHeader', Header)
 Vue.component('AppFooter', Footer)
@@ -30,7 +31,7 @@ firebase.initializeApp(firebaseConfig)
 
 
 
-const router = new VueRouter({routes,mode:"history"})
+// const router = new VueRouter({routes,mode:"history"})
 
 new Vue({
   render: h => h(App),

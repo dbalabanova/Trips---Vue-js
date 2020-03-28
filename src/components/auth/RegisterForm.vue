@@ -16,8 +16,8 @@
       placeholder="Enter username"
       >
       <template v-if="$v.username.$error">
-      <p v-if="!$v.email.required" class="alert alert-danger">This field is required</p>
-      <p v-if="!$v.email.minLength" class="alert alert-danger">Username must be at least 6 symbols</p>
+      <p v-if="!$v.username.required" class="alert alert-danger">This field is required</p>
+      <p v-if="!$v.username.minLength" class="alert alert-danger">Username must be at least 6 symbols</p>
       </template>
     </div>
     <div class="form-group">
@@ -135,6 +135,14 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-
+ .registerForm{
+    background-image: url('https://i.picsum.photos/id/300/4272/2848.jpg');
+    background-size: cover;
+    height: 100vh;
+    position: relative;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+ }
 
 </style>

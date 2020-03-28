@@ -1,9 +1,19 @@
 <template>
-  <div class="footer">
+
+  <v-footer padless>
+    <v-col
+      class="text-center"
+      cols="12"
+    >
+      This is the BEST footer you have ever seen!
+    </v-col>
+  </v-footer>
+
+  <!-- <div class="footer">
      <div >
             <p>This is the BEST footer you have ever seen!</p>
           </div>
-  </div>
+  </div> -->
 </template>
 
 <script>
