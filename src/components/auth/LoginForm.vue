@@ -1,64 +1,74 @@
 <template>
   <div class="loginForm">
-    <form @submit.prevent="onSubmit">
-      <v-app class="nobackground">
-        <v-form>
-          <v-container>
-            <v-row>
-              <v-col cols="12" sm="6">
-                <v-text-field
-                  @blur="$v.email.$touch()"
-                  v-model="email"
-                  id="email"
-                  label="Enter your email"
-                ></v-text-field>
-                <template v-if="$v.email.$error">
-                  <v-alert
-                    v-if="!$v.email.required"
-                    dense
-                    outlined
-                    type="error"
-                  >This field is required</v-alert>
-                  <v-alert v-if="!$v.email.email" dense outlined type="error">This email is invalid</v-alert>
-                </template>
-              </v-col>
-            </v-row>
-          </v-container>
-          <v-container fluid>
-            <v-row>
-              <v-col cols="12" sm="6">
-                <v-text-field
-                  @blur="$v.password.$touch()"
-                  v-model="password"
-                  id="password"
-                  :append-icon="show1 ? 'mdi-eye' : 'mdi-eye-off'"
-                  :type="show1 ? 'text' : 'password'"
-                  name="input-10-1"
-                  label="Enter your password"
-                  counter
-                  @click:append="show1 = !show1"
-                ></v-text-field>
-                <template v-if="$v.password.$error">
-                  <v-alert
-                    v-if="!$v.password.required"
-                    dense
-                    outlined
-                    type="error"
-                  >This field is required</v-alert>
-                  <v-alert
-                    v-if="!$v.password.minLength"
-                    dense
-                    outlined
-                    type="error"
-                  >Password must be at least 6 symbols</v-alert>
-                </template>
-              </v-col>
-            </v-row>
-          </v-container>
-        </v-form>
-      </v-app>
-      <button :disabled="$v.$invalid" type="submit" class="btn btn-primary">Login</button>
-    </form>
+    <!-- <form @submit.prevent="onSubmit"> -->
+    <v-app class="nobackground">
+      <v-form @submit.prevent="onSubmit">
+                <div>
+          <v-alert v-if="error" type="error">{{error}}</v-alert>
+        </div>
+        <v-container>
+          <v-row>
+            <v-col cols="12" sm="6">
+              <v-text-field
+                @blur="$v.email.$touch()"
+                v-model="email"
+                id="email"
+                label="Enter your email"
+              ></v-text-field>
+              <template v-if="$v.email.$error">
+                <v-alert
+                  v-if="!$v.email.required"
+                  dense
+                  outlined
+                  type="error"
+                >This field is required</v-alert>
+                <v-alert v-if="!$v.email.email" dense outlined type="error">This email is invalid</v-alert>
+              </template>
+            </v-col>
+          </v-row>
+        </v-container>
+        <v-container fluid>
+          <v-row>
+            <v-col cols="12" sm="6">
+              <v-text-field
+                @blur="$v.password.$touch()"
+                v-model="password"
+                id="password"
+                :append-icon="show1 ? 'mdi-eye' : 'mdi-eye-off'"
+                :type="show1 ? 'text' : 'password'"
+                name="input-10-1"
+                label="Enter your password"
+                counter
+                @click:append="show1 = !show1"
+              ></v-text-field>
+              <template v-if="$v.password.$error">
+                <v-alert
+                  v-if="!$v.password.required"
+                  dense
+                  outlined
+                  type="error"
+                >This field is required</v-alert>
+                <v-alert
+                  v-if="!$v.password.minLength"
+                  dense
+                  outlined
+                  type="error"
+                >Password must be at least 6 symbols</v-alert>
+              </template>
+            </v-col>
+          </v-row>
+        </v-container>
+
+        <v-row align="center">
+          <v-col class="text-center" cols="12" sm="4">
+            <div class="my-2">
+              <v-btn :disabled="$v.$invalid" type="submit" color="teal">Login</v-btn>
+            </div>
+          </v-col>
+        </v-row>
+      </v-form>
+    </v-app>
+    <!-- </form> -->
   </div>
 </template>
 
@@ -98,7 +108,7 @@ export default {
         .signInWithEmailAndPassword(this.email, this.password)
         .then(data => {
           console.log(data.user);
-          // this.$router.replace({path:'/' })
+          this.$router.replace({ path: "/" });
         })
         .catch(err => {
           this.error = err.message;
