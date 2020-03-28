@@ -1,159 +1,103 @@
 <template>
   <div class="loginForm">
-<form @submit.prevent="onSubmit">
-  <!-- <fieldset>
-    <legend>Login Form</legend>
-    <div v-if="error" class="alert alert-danger">{{error}}</div>
-
-
-    <div class="form-group">
-      <label for="email">Email</label>
-      <input 
-      @blur="$v.email.$touch()"
-      v-model="email"
-      type="email" 
-      class="form-control" 
-      id="email" 
-      placeholder="Enter email"
-      >
-      <template v-if="$v.email.$error">
-      <p v-if="!$v.email.required" class="alert alert-danger">This field is required </p>
-      <p v-if="!$v.email.email" class="alert alert-danger">Invalid email</p>
-      </template>
-    </div>
-    <div class="form-group">
-      <label for="password">Password</label>
-      <input 
-      @blur="$v.password.$touch()"
-      v-model="password"
-      type="password" 
-      class="form-control" 
-      id="password" 
-      placeholder="Password"
-      >
-    <template v-if="$v.password.$error">
-      <p v-if="!$v.password.required" class="alert alert-danger">This field is required </p>
-      <p v-if="!$v.password.minLength" class="alert alert-danger">Password must be at least 6 symbols </p>
-      </template>
-    </div>
-     </fieldset> -->
-     <v-app id="nobackground">
-      <v-form>
-      <v-container>
-      <v-row>
-        <v-col cols="12" sm="6">
-          <v-text-field
-            @blur="$v.email.$touch()"
-            v-model="email"
-            id="email" 
-            label="Enter your email"
-          ></v-text-field>
-      <template v-if="$v.email.$error">
-    <v-alert
-      v-if="!$v.email.required"
-      dense
-      outlined
-      type="error"
-    >
-      This field is required 
-    </v-alert>
- <v-alert
-      v-if="!$v.email.email"
-      dense
-      outlined
-      type="error"
-    >
-      This email is invalid
-    </v-alert>
-      </template>
-        </v-col>
-      </v-row>
-      </v-container>
-
-
-    <v-container fluid>
-      <v-row>
-        <v-col cols="12" sm="6">
-          <v-text-field
-           @blur="$v.password.$touch()"
-           v-model="password"
-           id="password" 
-          :append-icon="show1 ? 'mdi-eye' : 'mdi-eye-off'"
-          
-          :type="show1 ? 'text' : 'password'"
-          name="input-10-1"
-          label="Enter your password"
-          counter
-            @click:append="show1 = !show1"
-          ></v-text-field>
-        <template v-if="$v.password.$error">
-    <v-alert
-      v-if="!$v.password.required"
-      dense
-      outlined
-      type="error"
-    >
-      This field is required 
-    </v-alert>
- <v-alert
-      v-if="!$v.password.minLength"
-      dense
-      outlined
-      type="error"
-    >
-      Password must be at least 6 symbols 
-    </v-alert>
-      </template>
-        </v-col>
-               </v-row>
-        </v-container >
-     </v-form>
-    </v-app>
-<button :disabled="$v.$invalid" type="submit" class="btn btn-primary">Login</button>
-
-  
-</form>
+    <form @submit.prevent="onSubmit">
+      <v-app class="nobackground">
+        <v-form>
+          <v-container>
+            <v-row>
+              <v-col cols="12" sm="6">
+                <v-text-field
+                  @blur="$v.email.$touch()"
+                  v-model="email"
+                  id="email"
+                  label="Enter your email"
+                ></v-text-field>
+                <template v-if="$v.email.$error">
+                  <v-alert
+                    v-if="!$v.email.required"
+                    dense
+                    outlined
+                    type="error"
+                  >This field is required</v-alert>
+                  <v-alert v-if="!$v.email.email" dense outlined type="error">This email is invalid</v-alert>
+                </template>
+              </v-col>
+            </v-row>
+          </v-container>
+          <v-container fluid>
+            <v-row>
+              <v-col cols="12" sm="6">
+                <v-text-field
+                  @blur="$v.password.$touch()"
+                  v-model="password"
+                  id="password"
+                  :append-icon="show1 ? 'mdi-eye' : 'mdi-eye-off'"
+                  :type="show1 ? 'text' : 'password'"
+                  name="input-10-1"
+                  label="Enter your password"
+                  counter
+                  @click:append="show1 = !show1"
+                ></v-text-field>
+                <template v-if="$v.password.$error">
+                  <v-alert
+                    v-if="!$v.password.required"
+                    dense
+                    outlined
+                    type="error"
+                  >This field is required</v-alert>
+                  <v-alert
+                    v-if="!$v.password.minLength"
+                    dense
+                    outlined
+                    type="error"
+                  >Password must be at least 6 symbols</v-alert>
+                </template>
+              </v-col>
+            </v-row>
+          </v-container>
+        </v-form>
+      </v-app>
+      <button :disabled="$v.$invalid" type="submit" class="btn btn-primary">Login</button>
+    </form>
   </div>
 </template>
 
 <script>
-import {required,email,minLength} from 'vuelidate/lib/validators'
-import * as firebase from 'firebase'
+import { required, email, minLength } from "vuelidate/lib/validators";
+import * as firebase from "firebase";
 
 export default {
-  name: 'AppLogin',
+  name: "AppLogin",
   data() {
     return {
-      email:'',
-       password: '',
-      error:null,
-
-        show1: false,
-
-
-    }
+      email: "",
+      password: "",
+      error: null,
+      show1: false
+    };
   },
-  validations:{
-
-    email:{
+  validations: {
+    email: {
       required,
       email
     },
-    password:{
+    password: {
       required,
-      minLength:minLength(6)
+      minLength: minLength(6)
     }
   },
-  methods:{
-    onSubmit(){
-      this.$v.$touch()
-      if(this.$v.$invalid) { return}
-      
+  methods: {
+    onSubmit() {
+      this.$v.$touch();
+      if (this.$v.$invalid) {
+        return;
+      }
+
       firebase
         .auth()
         .signInWithEmailAndPassword(this.email, this.password)
-        .then((data) => {
-          console.log(data.user)
+        .then(data => {
+          console.log(data.user);
           // this.$router.replace({path:'/' })
         })
         .catch(err => {
@@ -161,23 +105,21 @@ export default {
         });
     }
   }
-}
+};
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-#nobackground{
+.nobackground {
   background: none;
 }
- .loginForm{
-    background-image: url('https://i.picsum.photos/id/300/4272/2848.jpg');
-    background-size: cover;
-    height: 100vh;
-    position: relative;
-    background-position: center center;
-    background-repeat: no-repeat;
-    background-size: cover;
- }
-
-
+.loginForm {
+  background-image: url("https://i.picsum.photos/id/300/4272/2848.jpg");
+  background-size: cover;
+  height: 100vh;
+  position: relative;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
 </style>

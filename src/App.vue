@@ -1,9 +1,11 @@
 <template>
-  <div id="app">
+  <!-- <div id="app"> -->
+    <v-app id="app" class="green">
     <app-header></app-header>
     <router-view></router-view>
     <app-footer></app-footer>
-  </div>
+    </v-app>
+  <!-- </div> -->
 </template>
 
 <script>
@@ -23,7 +25,7 @@ export default {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #2c3e50;
+  /* color: #2c3e50; */
   /* margin-top: 60px; */
 }
 </style>
