@@ -1,5 +1,5 @@
 <template>
-  <div class="registerForm">
+  <div id="registerForm">
     <v-app class="nobackground">
       <v-form @submit.prevent="onSubmit">
         <div>
@@ -180,7 +180,7 @@ export default {
 .nobackground {
   background: none;
 }
-.registerForm {
+#registerForm {
   background-image: url("https://i.picsum.photos/id/300/4272/2848.jpg");
   background-size: cover;
   height: 100vh;

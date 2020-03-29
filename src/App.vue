@@ -1,11 +1,9 @@
 <template>
-  <!-- <div id="app"> -->
     <v-app id="app" class="green">
     <app-header></app-header>
     <router-view></router-view>
     <app-footer></app-footer>
     </v-app>
-  <!-- </div> -->
 </template>
 
 <script>
