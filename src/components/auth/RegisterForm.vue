@@ -26,7 +26,7 @@
                   dense
                   outlined
                   type="error"
-                >Username must be at least 6 symbols</v-alert>
+                >Username must be at least 3 symbols</v-alert>
               </template>
             </v-col>
           </v-row>
@@ -133,7 +133,7 @@ export default {
   validations: {
     username: {
       required,
-      minLength: minLength(6)
+      minLength: minLength(3)
     },
     email: {
       required,
@@ -163,7 +163,7 @@ export default {
               displayName: this.username
             })
             .then(() => {
-              this.$router.replace({ path: "/login" });
+              this.$router.push( "/login");
             });
         })
 

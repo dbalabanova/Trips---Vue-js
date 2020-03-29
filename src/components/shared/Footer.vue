@@ -5,7 +5,7 @@
       class="text-center"
       cols="12"
     >
-      This is the BEST footer you have ever seen!
+      This is the BEST footer you have ever seen! &copy; 2020
     </v-col>
   </v-footer>
 

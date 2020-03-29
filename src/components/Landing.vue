@@ -1,6 +1,9 @@
 <template>
   <div class="bg">
-<h1>Dear {{name}} it's not time to travel it's Quarantine...</h1>
+<h1>
+  <p>Dear ....</p>
+  <p>it's not time to travel it's Quarantine...</p>
+  </h1>
   </div>
 </template>
 
@@ -36,6 +39,6 @@ export default {
 }
 h1{
   text-align: center;
-  margin-top:250px
+  margin-top:200px
 }
 </style>
