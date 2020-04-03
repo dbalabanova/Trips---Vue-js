@@ -1,17 +1,24 @@
 <template>
   <div class="bg">
-<h1>
-  <p>Dear ....</p>
+  <template v-if="isLoggedIn">
+  <h1>
+  <p>Dear </p>
   <p>it's not time to travel it's Quarantine...</p>
   </h1>
+  </template>
   </div>
 </template>
 
 <script>
+import firebase from 'firebase' 
+
 export default {
   name: 'AppLanding',
   props: {
-    msg: String
+    isLoggedIn: Boolean
+  },
+  beforeCreate(){
+    this.$emit('onAuth',firebase.auth().currentUser !==null)
   }
   
 }
@@ -39,6 +46,8 @@ export default {
 }
 h1{
   text-align: center;
-  margin-top:200px
+  margin-top:150px;
+  font-size: 44px;
+ 
 }
 </style>

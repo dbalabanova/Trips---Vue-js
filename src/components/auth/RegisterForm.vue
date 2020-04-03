@@ -116,6 +116,7 @@
 <script>
 import { required, email, minLength, sameAs } from "vuelidate/lib/validators";
 import * as firebase from "firebase";
+import 'firebase/auth'
 
 export default {
   name: "AppRegister",

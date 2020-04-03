@@ -73,6 +73,7 @@
 <script>
 import { required, email, minLength } from "vuelidate/lib/validators";
 import * as firebase from "firebase";
+import 'firebase/auth'
 
 export default {
   name: "AppLogin",
@@ -105,12 +106,14 @@ export default {
         .auth()
         .signInWithEmailAndPassword(this.email, this.password)
         .then(data => {
+          // let username=data.user.displayName
           console.log(data.user);
-          this.$router.push( "/" );
+          this.$router.push({path: "/"} );
         })
         .catch(err => {
           this.error = err.message;
         });
+
     }
   }
 };
@@ -130,4 +133,5 @@ export default {
   background-repeat: no-repeat;
   background-size: cover;
 }
+
 </style>

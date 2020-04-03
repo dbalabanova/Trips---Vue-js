@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-
+import firebase from 'firebase'
+import 'firebase/auth'
 
 
 import Landing from '../components/Landing'
@@ -8,20 +9,32 @@ import LoginForm from '../components/auth/LoginForm'
 import RegisterForm from '../components/auth/RegisterForm'
 import TripsList from '../components/trips/TripsList'
 import TripCreate from '../components/trips/TripCreate'
-// import TripDetails from '../components/trips/TripDetails'
+import TripDetails from '../components/trips/TripDetails'
+import TripEdit from '../components/trips/TripEdit'
+
+function authGuard(to,from,next){
+if(!firebase.auth().currentUser){
+    console.log('authguard')
+    console.log(firebase.auth().currentUser)
+    next('/login')
+} else{
+    next()
+}
+}
 
 const routes= [
     {path:'/', component: Landing},
     {path:'/login', component: LoginForm},
     {path:'/register', component: RegisterForm},
-    {path:'/trips-list', component: TripsList},
-    {path:'/trip-create', component: TripCreate},
+    {path:'/trips-list', component: TripsList, beforeEnter:authGuard},
+    {path:'/trip-create', component: TripCreate, beforeEnter:authGuard},
+    {path:'/trip-edit/:id', name:'tripEdit', component: TripEdit, beforeEnter:authGuard},
+    {path:'/trip-create/:id', name:'tripDetails',component: TripDetails, beforeEnter:authGuard},
+    {path:'*',component: LoginForm},
     
   ]
 
   Vue.use(VueRouter)
-
-
 
   export default new VueRouter({
       mode:'history',

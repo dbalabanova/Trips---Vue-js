@@ -6,19 +6,33 @@
           <v-img class="white--text align-end " height="200px" :src="trip.imagePath">
             <v-card-title>{{trip.name}}</v-card-title>
           </v-img>
-
-          <!-- <v-card-subtitle class="pb-0">Number 10</v-card-subtitle> -->
-
           <v-card-text class="text--primary">
-            <!-- <div>Whitehaven Beach</div> -->
-
             <div>{{trip.description | sliceText }}...</div>
           </v-card-text>
 
-          <v-card-actions>
-            <v-btn color="orange" text>Edit</v-btn>
-
-            <v-btn color="orange" text>Details</v-btn>
+          <v-card-actions> 
+            <v-btn color="orange" text >
+            <router-link 
+            color="orange"
+            :to="{ name:'tripEdit'}" 
+            class="nav-item nav-link" 
+            active-class="active" 
+            exact
+            >
+            Edit
+            </router-link >
+            </v-btn>
+            <v-btn color="orange" text>
+            <router-link 
+            color="orange"
+            to="/trip-create/:id" 
+            class="nav-item nav-link" 
+            active-class="active" 
+            exact
+            >
+            Details
+            </router-link>
+            </v-btn>
           </v-card-actions>
         </v-card>
       </v-flex>
@@ -27,15 +41,27 @@
 </template>
 
 <script>
-import { tripsService } from "../../Services/tripsServices";
+import  {tripsService}  from "../../Services/tripsServices";
+// import {firestore} from '../../config'
+//import axios from 'axios'
+//  import {getAllTrips} from '../../Services/tripsServices'
 export default {
   name: "AppTripsList",
   mixins: [tripsService],
+ data(){
+   return {
+     trips:[]
+   }
+ },
   filters: {
     sliceText: function(value) {
       return (value = value.slice(0, 100));
     }
-  }
+  },
+
+ created(){
+    this.getAllTrips()
+ }
 };
 </script>
 

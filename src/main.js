@@ -4,27 +4,27 @@ import router from './plugins/router'
 import Vuelidate from 'vuelidate'
 import vuetify from './plugins/vuetify'
 import 'bootstrap/dist/css/bootstrap.min.css'
-import * as firebase from 'firebase'
-import {firebaseConfig} from './config'
+// import 'firebase'
+ import * as firebase from 'firebase'
+// import {config} from './config'
 import axiosPlugin from './plugins/axiosPlugin'
+import VueFire from 'vuefire/dist/vuefire'
 
-import Header from './components/shared/Header'
-import Footer from './components/shared/Footer'
+// firebase.initializeApp(config)
 
 Vue.config.productionTip = false
 Vue.use(Vuelidate)
+Vue.use(VueFire)
 Vue.use(axiosPlugin)
+let app=''
 
-Vue.component('AppHeader', Header)
-Vue.component('AppFooter', Footer)
+firebase.auth().onAuthStateChanged(()=>{
+  if(!app){
+    app=new Vue({
+      render: h => h(App),
+      vuetify,
+      router
+    }).$mount('#app')
+  }
+})
 
-
-
-firebase.initializeApp(firebaseConfig)
-
-
-new Vue({
-  render: h => h(App),
-  vuetify,
-  router
-}).$mount('#app')

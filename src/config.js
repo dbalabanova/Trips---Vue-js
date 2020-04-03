@@ -1,5 +1,8 @@
+import firebase from 'firebase'
+import 'firebase/firestore'
 
-export const  firebaseConfig={
+
+ const config= {
     apiKey: "AIzaSyAnYE27q-S8CkE-y5aL7h9RjtT12C43_74",
     authDomain: "trips-d41d1.firebaseapp.com",
     databaseURL: "https://trips-d41d1.firebaseio.com",
@@ -7,6 +10,10 @@ export const  firebaseConfig={
     storageBucket: "trips-d41d1.appspot.com",
     messagingSenderId: "1007606651333",
     appId: "1:1007606651333:web:ac617da1087668eefb53ac"
-  }
+  } 
 
 
+ firebase.initializeApp(config);
+export const firestore = firebase.firestore();
+// export const firestore = db.database();
+// export const storage = firebase.storage();
