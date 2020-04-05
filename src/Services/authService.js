@@ -1,14 +1,48 @@
-// import axios from 'axios';
+import * as firebase from "firebase";
 
-// const instance = axios.create({
-//     baseURL: 'https://identitytoolkit.googleapis.com/v1',
-//     headers: { 'Content-Type': 'application/json' }
-// });
+export const authService={
+    data() {
+        return {
+            email:'',
+            password:'',
+            username:'',
+            error:'',
+            success:''
+        }
+    },
+    methods:{
+        registration(userData){
+            firebase
+            .auth()
+            .createUserWithEmailAndPassword(userData.email, userData.password)
+            .then(data => {
+              data.user
+                .updateProfile({
+                  displayName: this.username
+                })
+                .then(() => {
+                    this.success='Successful registration!'
+                    this.$router.push( "/login");
+                })
+            }) .catch(err => {
+                this.error = err.message;
+                
+             });
+        },
 
-// instance.interceptors.request.use((config) => {
-//     config.url = `${config.url}?key=AIzaSyAnYE27q-S8CkE-y5aL7h9RjtT12C43_74`
+        login(){
+            firebase
+            .auth()
+            .signInWithEmailAndPassword(this.email, this.password)
+            .then(() => {
+            //    let username=data.user.displayName
+            //   console.log(data.user);
+              this.$router.push({path: "/"} );
+            })
+            .catch(err => {
+              this.error = err.message;
+            });
+        }
+    }
+}
 
-//     return config;
-// });
-
-// export default instance;

@@ -72,11 +72,13 @@
 
 <script>
 import { required, email, minLength } from "vuelidate/lib/validators";
-import * as firebase from "firebase";
-import 'firebase/auth'
+// import * as firebase from "firebase";
+// import 'firebase/auth'
+import {authService} from '../../Services/authService'
 
 export default {
   name: "AppLogin",
+  mixins:[authService],
   data() {
     return {
       email: "",
@@ -98,21 +100,10 @@ export default {
   methods: {
     onSubmit() {
       this.$v.$touch();
-      if (this.$v.$invalid) {
-        return;
+      if (!this.$v.$invalid) {
+        this.login()
       }
 
-      firebase
-        .auth()
-        .signInWithEmailAndPassword(this.email, this.password)
-        .then(data => {
-          // let username=data.user.displayName
-          console.log(data.user);
-          this.$router.push({path: "/"} );
-        })
-        .catch(err => {
-          this.error = err.message;
-        });
 
     }
   }

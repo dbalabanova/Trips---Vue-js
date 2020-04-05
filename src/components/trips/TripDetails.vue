@@ -1,5 +1,7 @@
 <template>
   <v-container v-if="trip" fluid>
+        <p> {{trip.isCreator}}</p>
+
     <v-row justify="space-around">
         <div class="subheading pt-4">{{trip.name}}</div>
       <v-img :src="trip.imagePath" aspect-ratio="1.4" contain></v-img>
@@ -8,10 +10,12 @@
         {{trip.description}}
     </p>
     <v-row align="center">
-      <v-col class="text-center" cols="12" sm="4">
-        <div class="my-2">
+      <v-col v-if="trip.isCreator" class="text-center" cols="12" sm="4">
+        <div  class="my-2">
           
-          <v-btn   class="separated" color="teal">            
+          <v-btn   
+            class="separated" 
+            color="teal">            
             <router-link 
             tag="v-btn"
             color="orange"
@@ -23,7 +27,10 @@
             Edit
             </router-link >
             </v-btn> 
-            <v-btn @click="onDeleteTrip" class="separated"  color="teal">Delete</v-btn>
+            <v-btn 
+            @click="onDeleteTrip" 
+            class="separated"  
+            color="teal">Delete</v-btn>
         </div>
       </v-col>
 

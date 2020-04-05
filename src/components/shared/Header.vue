@@ -1,7 +1,9 @@
 <template>
   <div class="header">
     <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #009688;">
-      <router-link to="/" class="navbar-brand" active-class="active" exact>Trips</router-link>
+      
+      <router-link v-if="isLoggedIn" to="/trips-list" class="navbar-brand" active-class="active" exact>Trips</router-link>
+      <router-link v-if="!isLoggedIn" to="/login" class="navbar-brand" active-class="active" exact>Trips</router-link>
 
       <div class="collapse navbar-collapse" id="navbarColor01">
         <ul class="navbar-nav mr-auto">

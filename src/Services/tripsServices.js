@@ -1,6 +1,6 @@
 // import axios from "axios";
 import {firestore} from '../config'
-// import * as firebase from "firebase";
+import * as firebase from "firebase";
 // import 'firebase/auth'
 // import  firestore from 'firebase/firestore'
 
@@ -10,7 +10,7 @@ export const tripsService = {
             trips:[],
             trip:{},
             key:null,
-            // currentTrip:{}
+            isCreator:null,
             name:'',
             imagePath:'',
             description:''
@@ -25,8 +25,10 @@ export const tripsService = {
         "id":doc.id,
         'name': doc.data().name,
         'imagePath':doc.data().imagePath,
-        'description':doc.data().description
+        'description':doc.data().description,
+        'isCreator':doc.data().creatorId===firebase.auth().currentUser.uid
       }
+      console.log(doc.data().creatorId)
        this.trips.push(data)
      })
    })
@@ -42,7 +44,8 @@ export const tripsService = {
         "id":doc.id,
         'name': doc.data().name,
         'imagePath':doc.data().imagePath,
-        'description':doc.data().description
+        'description':doc.data().description,
+        'isCreator':doc.data().creatorId===firebase.auth().currentUser.uid
       }
       this.trip=data
       this.key=this.trip.id
@@ -59,25 +62,31 @@ export const tripsService = {
   .catch(()=>{})  
  },
  createTrip(data){
-   const tr={
-    name:data.name,
-    description:data.description,
-    imagePath:data.imagePath
-   }
-  return firestore.collection('trips').add(tr).then(()=>{
+   if(firebase.auth().currentUser){
+     let uid=firebase.auth().currentUser.uid
+     const tr={
+      name:data.name,
+      description:data.description,
+      imagePath:data.imagePath,
+      creatorId:uid
+ }
+return firestore.collection('trips').add(tr).then(()=>{
 
-    this.$router.push('/trips-list')
-  })
+  this.$router.push('/trips-list')
+})
 //ДА сИ ИЗПИША ГРЕШКАТА И ДА СИ ИЗПИША СЪКСЕСА
-  .catch(()=>{})
+.catch(()=>{})
+  }
  },
 
  getTripToEdit(){
   return firestore.collection('trips').doc(this.$route.params.id).get().then((doc)=>{
-
+     
       this.name= doc.data().name,
       this.imagePath=doc.data().imagePath,
-      this.description=doc.data().description
+      this.description=doc.data().description,
+      creatorId=firebase.auth().currentUser.uid
+
 })
 //ДА сИ ИЗПИША ГРЕШКАТА И ДА СИ ИЗПИША СЪКСЕСА
 .catch(()=>{})
@@ -89,9 +98,11 @@ export const tripsService = {
      description:data.description,
      imagePath:data.imagePath
     }
+    let id = this.$route.params.id
   return firestore.collection('trips').doc(this.$route.params.id).set(tr).then(()=>{
-    this.$router.push('/trips-list')
+    this.$router.push('/trip-details/'+id)
   })
+//ДА сИ ИЗПИША ГРЕШКАТА И ДА СИ ИЗПИША СЪКСЕСА
   .catch(()=>{})
  }
 }

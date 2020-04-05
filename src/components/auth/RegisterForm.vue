@@ -4,6 +4,7 @@
       <v-form @submit.prevent="onSubmit">
         <div>
           <v-alert v-if="error" type="error">{{error}}</v-alert>
+          <v-alert v-if="success" type="success">{{success}}</v-alert>
         </div>
         <v-container>
           <v-row>
@@ -115,18 +116,20 @@
 
 <script>
 import { required, email, minLength, sameAs } from "vuelidate/lib/validators";
-import * as firebase from "firebase";
-import 'firebase/auth'
+
+import {authService} from '../../Services/authService'
 
 export default {
   name: "AppRegister",
+  mixins:[authService],
   data() {
     return {
       username: "",
       email: "",
       password: "",
       confirmPassword: "",
-      error: null,
+      error: '',
+      success:'',
       show1: false,
       show2: false
     };
@@ -151,26 +154,15 @@ export default {
   methods: {
     onSubmit() {
       this.$v.$touch();
-      if (this.$v.$invalid) {
-        return;
+      if (!this.$v.$invalid) {
+        const userData={
+          email:this.email,
+          password:this.password,
+          username:this.username,
+          error:this.error
+        }
+        this.registration(userData)
       }
-
-      firebase
-        .auth()
-        .createUserWithEmailAndPassword(this.email, this.password)
-        .then(data => {
-          data.user
-            .updateProfile({
-              displayName: this.username
-            })
-            .then(() => {
-              this.$router.push( "/login");
-            });
-        })
-
-        .catch(err => {
-          this.error = err.message;
-        });
     }
   }
 };

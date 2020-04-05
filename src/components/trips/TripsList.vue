@@ -11,7 +11,8 @@
           </v-card-text>
 
           <v-card-actions> 
-            <v-btn  color="orange" text >
+            <v-btn  v-if="trip.isCreator" color="orange" text >
+             
             <router-link 
             color="orange"
             :to="{ name:'tripEdit', params:{id:trip.id}}" 
@@ -50,7 +51,8 @@ export default {
   mixins: [tripsService],
  data(){
    return {
-     trips:[]
+     trips:[],
+    //  isCreator:null
    }
  },
   filters: {

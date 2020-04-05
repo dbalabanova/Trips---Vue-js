@@ -122,7 +122,8 @@ methods:{
     const data = {
         name:this.name,
         description:this.description,
-        imagePath:this.imagePath
+        imagePath:this.imagePath,
+        
       }
   this.editTrip(data)
   }
