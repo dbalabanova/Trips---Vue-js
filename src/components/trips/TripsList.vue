@@ -11,10 +11,10 @@
           </v-card-text>
 
           <v-card-actions> 
-            <v-btn color="orange" text >
+            <v-btn  color="orange" text >
             <router-link 
             color="orange"
-            :to="{ name:'tripEdit'}" 
+            :to="{ name:'tripEdit', params:{id:trip.id}}" 
             class="nav-item nav-link" 
             active-class="active" 
             exact
@@ -25,7 +25,7 @@
             <v-btn color="orange" text>
             <router-link 
             color="orange"
-            to="/trip-create/:id" 
+            :to="{name: 'tripDetails', params:{id:trip.id}}" 
             class="nav-item nav-link" 
             active-class="active" 
             exact
@@ -61,7 +61,8 @@ export default {
 
  created(){
     this.getAllTrips()
- }
+ },
+
 };
 </script>
 

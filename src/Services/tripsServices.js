@@ -8,19 +8,11 @@ export const tripsService = {
     data(){
         return {
             trips:[],
+            trip:null,
+            key:null
         }
     },
   methods: {
-//     // axios.get("https://trips-d41d1.firebaseio.com/trips.json")
-//     // .then(data => {
-//     //   this.trips = data.data;
-      
-//     // });
-//    // console.log(firestore.collection('trips'))
-//   //  firestore.ref('/trips').then((snapShot=>{
-//   //    console.log(snapShot)
-//   //  }))
-//   }
 
  getAllTrips(){
   return firestore.collection('trips').get().then((querySnapshot)=>{
@@ -34,6 +26,26 @@ export const tripsService = {
       }
        this.trips.push(data)
      })
+   })
+ },
+
+ getTripById(){
+   return firestore.collection('trips').doc(this.$route.params.id).get().then((doc)=>{
+    if(doc.exists){
+      const data ={
+        "id":doc.id,
+        'name': doc.data().name,
+        'imagePath':doc.data().imagePath,
+        'description':doc.data().description
+      }
+      this.trip=data
+      this.key=this.trip.id
+    }
+})
+ },
+ deleteTrip(key){
+   return firestore.collection('trips').doc(key).delete().then(()=>{
+     this.$router.push('/trips-list')
    })
  }
 }

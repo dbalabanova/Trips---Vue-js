@@ -88,7 +88,7 @@
 import { required, minLength, maxLength} from "vuelidate/lib/validators";
 
 export default {
-  name: "AppEditTrip",
+  name: "AppTripEdit",
   data() {
     return {
       name: "",
@@ -108,7 +108,8 @@ export default {
       required,
       minLength: minLength(10)
     }
-  }
+  },
+
 };
 </script>
 

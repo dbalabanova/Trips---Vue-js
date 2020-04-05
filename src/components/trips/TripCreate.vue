@@ -88,7 +88,7 @@
 import { required, minLength, maxLength} from "vuelidate/lib/validators";
 
 export default {
-  name: "AppCreateTrip",
+  name: "AppTripCreate",
   data() {
     return {
       name: "",

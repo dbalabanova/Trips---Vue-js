@@ -10,6 +10,8 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import axiosPlugin from './plugins/axiosPlugin'
 import VueFire from 'vuefire/dist/vuefire'
 
+// import store from './Services/store'
+
 // firebase.initializeApp(config)
 
 Vue.config.productionTip = false
@@ -22,6 +24,7 @@ firebase.auth().onAuthStateChanged(()=>{
   if(!app){
     app=new Vue({
       render: h => h(App),
+      // store,
       vuetify,
       router
     }).$mount('#app')

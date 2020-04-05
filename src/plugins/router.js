@@ -29,7 +29,7 @@ const routes= [
     {path:'/trips-list', component: TripsList, beforeEnter:authGuard},
     {path:'/trip-create', component: TripCreate, beforeEnter:authGuard},
     {path:'/trip-edit/:id', name:'tripEdit', component: TripEdit, beforeEnter:authGuard},
-    {path:'/trip-create/:id', name:'tripDetails',component: TripDetails, beforeEnter:authGuard},
+    {path:'/trip-details/:id', name:'tripDetails',component: TripDetails, beforeEnter:authGuard},
     {path:'*',component: LoginForm},
     
   ]
