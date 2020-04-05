@@ -1,7 +1,7 @@
   <template>
   <div id="createForm">
     <v-app class="nobackground">
-      <v-form>
+      <v-form @submit.prevent="onSubmit">
         <v-container v-if="trip">
           <v-row>
             <v-col cols="12" md="6">
@@ -75,7 +75,7 @@
         <v-row align="center">
           <v-col class="text-center" cols="12" sm="4">
             <div class="my-2">
-              <v-btn :disabled="$v.$invalid" type="submit" color="teal">Create</v-btn>
+              <v-btn :disabled="$v.$invalid" type="submit" color="teal">Edit</v-btn>
             </div>
           </v-col>
         </v-row>
@@ -115,21 +115,17 @@ export default {
     }
   },
 created(){
-
-
-//       firestore.collection('trips').doc(this.$route.params.id).get().then((doc)=>{
-//       // const data ={
-//       //   id:doc.id,
-//       //   name: doc.data().name,
-//       //   imagePath:doc.data().imagePath,
-//       //   description:doc.data().description
-//       // }
-//         this.name= doc.data().name,
-//         this.imagePath=doc.data().imagePath,
-//         this.description=doc.data().description
-
-
-// })
+this.getTripToEdit()
+},
+methods:{
+  onSubmit(){
+    const data = {
+        name:this.name,
+        description:this.description,
+        imagePath:this.imagePath
+      }
+  this.editTrip(data)
+  }
 }
 };
 </script>

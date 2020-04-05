@@ -74,18 +74,25 @@ export const tripsService = {
 
  getTripToEdit(){
   return firestore.collection('trips').doc(this.$route.params.id).get().then((doc)=>{
-    // const data ={
-    //   id:doc.id,
-    //   name: doc.data().name,
-    //   imagePath:doc.data().imagePath,
-    //   description:doc.data().description
-    // }
+
       this.name= doc.data().name,
       this.imagePath=doc.data().imagePath,
       this.description=doc.data().description
-
-
 })
+//ДА сИ ИЗПИША ГРЕШКАТА И ДА СИ ИЗПИША СЪКСЕСА
+.catch(()=>{})
+ },
+
+ editTrip(data){
+   const tr={
+     name:data.name,
+     description:data.description,
+     imagePath:data.imagePath
+    }
+  return firestore.collection('trips').doc(this.$route.params.id).set(tr).then(()=>{
+    this.$router.push('/trips-list')
+  })
+  .catch(()=>{})
  }
 }
 }
