@@ -8,8 +8,12 @@ export const tripsService = {
     data(){
         return {
             trips:[],
-            trip:null,
-            key:null
+            trip:{},
+            key:null,
+            // currentTrip:{}
+            name:'',
+            imagePath:'',
+            description:''
         }
     },
   methods: {
@@ -17,7 +21,6 @@ export const tripsService = {
  getAllTrips(){
   return firestore.collection('trips').get().then((querySnapshot)=>{
      querySnapshot.forEach(doc=>{
-     //  console.log(doc.id)
       const data={
         "id":doc.id,
         'name': doc.data().name,
@@ -27,6 +30,9 @@ export const tripsService = {
        this.trips.push(data)
      })
    })
+//ДА сИ ИЗПИША ГРЕШКАТА И ДА СИ ИЗПИША СЪКСЕСА
+
+   .catch(()=>{})
  },
 
  getTripById(){
@@ -42,11 +48,44 @@ export const tripsService = {
       this.key=this.trip.id
     }
 })
+//ДА сИ ИЗПИША ГРЕШКАТА И ДА СИ ИЗПИША СЪКСЕСА
+.catch(()=>{})
  },
  deleteTrip(key){
    return firestore.collection('trips').doc(key).delete().then(()=>{
      this.$router.push('/trips-list')
    })
+//ДА сИ ИЗПИША ГРЕШКАТА И ДА СИ ИЗПИША СЪКСЕСА
+  .catch(()=>{})  
+ },
+ createTrip(data){
+   const tr={
+    name:data.name,
+    description:data.description,
+    imagePath:data.imagePath
+   }
+  return firestore.collection('trips').add(tr).then(()=>{
+
+    this.$router.push('/trips-list')
+  })
+//ДА сИ ИЗПИША ГРЕШКАТА И ДА СИ ИЗПИША СЪКСЕСА
+  .catch(()=>{})
+ },
+
+ getTripToEdit(){
+  return firestore.collection('trips').doc(this.$route.params.id).get().then((doc)=>{
+    // const data ={
+    //   id:doc.id,
+    //   name: doc.data().name,
+    //   imagePath:doc.data().imagePath,
+    //   description:doc.data().description
+    // }
+      this.name= doc.data().name,
+      this.imagePath=doc.data().imagePath,
+      this.description=doc.data().description
+
+
+})
  }
 }
 }

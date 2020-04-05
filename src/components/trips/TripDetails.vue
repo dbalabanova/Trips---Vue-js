@@ -7,12 +7,22 @@
      <p >
         {{trip.description}}
     </p>
-    
-
     <v-row align="center">
       <v-col class="text-center" cols="12" sm="4">
         <div class="my-2">
-          <v-btn   class="separated" color="teal">Edit</v-btn> 
+          
+          <v-btn   class="separated" color="teal">            
+            <router-link 
+            tag="v-btn"
+            color="orange"
+            :to="{ name:'tripEdit', params:{id:trip.id}}" 
+            class="nav-item nav-link" 
+            active-class="active" 
+            exact
+            >            
+            Edit
+            </router-link >
+            </v-btn> 
             <v-btn @click="onDeleteTrip" class="separated"  color="teal">Delete</v-btn>
         </div>
       </v-col>
@@ -54,5 +64,6 @@ methods:{
     .separated{
         margin-right: 10px
     };
+
 
 </style>

@@ -1,7 +1,7 @@
   <template>
   <div id="createForm">
     <v-app class="nobackground">
-      <v-form>
+      <v-form @submit.prevent="onSubmit">
         <v-container>
           <v-row>
             <v-col cols="12" md="6">
@@ -86,11 +86,15 @@
 
 <script>
 import { required, minLength, maxLength} from "vuelidate/lib/validators";
+import  {tripsService}  from "../../Services/tripsServices";
+// import {firestore} from '../../config'
 
 export default {
   name: "AppTripCreate",
+  mixins: [tripsService],
   data() {
     return {
+      trip:{},
       name: "",
       imagePath: "",
       description: ""
@@ -108,6 +112,17 @@ export default {
       required,
       minLength: minLength(10)
     }
+  },
+  methods:{
+    onSubmit(){
+      const data = {
+        name:this.name,
+        description:this.description,
+        imagePath:this.imagePath
+      }
+    this.createTrip(data)
+
+  }
   }
 };
 </script>

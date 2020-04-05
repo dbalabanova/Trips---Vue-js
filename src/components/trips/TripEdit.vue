@@ -2,7 +2,7 @@
   <div id="createForm">
     <v-app class="nobackground">
       <v-form>
-        <v-container>
+        <v-container v-if="trip">
           <v-row>
             <v-col cols="12" md="6">
               <v-text-field 
@@ -86,11 +86,16 @@
 
 <script>
 import { required, minLength, maxLength} from "vuelidate/lib/validators";
+import  {tripsService}  from "../../Services/tripsServices";
+// import { firestore } from '../../config';
 
 export default {
   name: "AppTripEdit",
+  mixins: [tripsService],
   data() {
     return {
+      // key:this.$route.params.id,
+      trip:{},
       name: "",
       imagePath: "",
       description: ""
@@ -109,7 +114,23 @@ export default {
       minLength: minLength(10)
     }
   },
+created(){
 
+
+//       firestore.collection('trips').doc(this.$route.params.id).get().then((doc)=>{
+//       // const data ={
+//       //   id:doc.id,
+//       //   name: doc.data().name,
+//       //   imagePath:doc.data().imagePath,
+//       //   description:doc.data().description
+//       // }
+//         this.name= doc.data().name,
+//         this.imagePath=doc.data().imagePath,
+//         this.description=doc.data().description
+
+
+// })
+}
 };
 </script>
 
