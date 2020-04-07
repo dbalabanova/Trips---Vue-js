@@ -4,6 +4,7 @@
       <v-form @submit.prevent="onSubmit">
         <div>
           <v-alert v-if="error" type="error">{{error}}</v-alert>
+          <v-alert v-if="success" type="success">{{success}}</v-alert>
         </div>
         <v-container>
           <v-row>
@@ -66,7 +67,12 @@
           </v-col>
         </v-row>
       </v-form>
+        <v-row class="wrapper" align="center" justify="center">
+          You don't have an account?    
+    <v-btn class="decoration" to="/register" color="teal">Register</v-btn>
+        </v-row>
     </v-app>
+
   </div>
 </template>
 
@@ -84,6 +90,7 @@ export default {
       email: "",
       password: "",
       error: null,
+      success:null,
       show1: false
     };
   },
@@ -101,6 +108,7 @@ export default {
     onSubmit() {
       this.$v.$touch();
       if (!this.$v.$invalid) {
+
         this.login()
       }
 
@@ -123,6 +131,10 @@ export default {
   background-position: center center;
   background-repeat: no-repeat;
   background-size: cover;
+}
+.decoration{
+  text-decoration: none;
+  margin-left: 20px;
 }
 
 </style>

@@ -2,7 +2,7 @@
   <div class="bg">
   <template v-if="isLoggedIn">
   <h1>
-  <p>Dear {{username | upperCase }},</p>
+  <p>Dear {{displayName | upperCase }},</p>
   <p>it's not time to travel it's Quarantine...</p>
   </h1>
   </template>
@@ -11,15 +11,17 @@
 
 <script>
 import firebase from 'firebase' 
+import { authService } from "../Services/authService";
 
 export default {
   name: 'AppLanding',
+  mixins: [ authService],
   props: {
     isLoggedIn: Boolean
   },
   data(){
     return {
-      username:firebase.auth().currentUser.displayName
+      displayName:''
     }
   },
   beforeCreate(){
@@ -29,7 +31,12 @@ export default {
     upperCase: function(value) {
       return (value = value.toUpperCase());
     }
+  },
+
+  created(){
+    this.userInfo()
   }
+
 }
 </script>
 

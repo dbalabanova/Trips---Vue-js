@@ -107,10 +107,12 @@
             </div>
           </v-col>
         </v-row>
+      <v-row class="wrapper" align="center" justify="center">
+            You already have an account?    
+        <v-btn class="decoration" to="/login" color="teal" >Login</v-btn>
+      </v-row>
       </v-form>
     </v-app>
-
-    <button :disabled="$v.$invalid" type="submit" class="btn btn-primary">Register</button>
   </div>
 </template>
 
@@ -181,5 +183,9 @@ export default {
   background-position: center center;
   background-repeat: no-repeat;
   background-size: cover;
+}
+.decoration{
+  text-decoration: none;
+  margin-left: 20px;
 }
 </style>

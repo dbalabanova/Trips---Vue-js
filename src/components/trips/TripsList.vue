@@ -1,7 +1,15 @@
 <template>
   <div>
+    <!-- <v-layout class = "bg" v-if="trips.length===0" row wrap>
+      <div > -->
+    <!-- <h1 v-if="trips.length===0">Sorry there are no trips to show you. Come back a little later :)</h1> -->
+      <!-- </div>
+    </v-layout > -->
+    <v-alert v-if="error" type="error">{{error}}</v-alert>
     <v-layout row wrap>
       <v-flex lg4 v-for="trip of trips" :key="trip.id">
+        <v-row align="center">
+          
         <v-card flat class="ma-3" elevation="1" max-width="400">
           <v-img class="white--text align-end " height="200px" :src="trip.imagePath">
             <v-card-title>{{trip.name}}</v-card-title>
@@ -36,6 +44,7 @@
             </v-btn>
           </v-card-actions>
         </v-card>
+        </v-row>
       </v-flex>
     </v-layout>
   </div>
@@ -43,15 +52,14 @@
 
 <script>
 import  {tripsService}  from "../../Services/tripsServices";
-// import {firestore} from '../../config'
-//import axios from 'axios'
-//  import {getAllTrips} from '../../Services/tripsServices'
+
 export default {
   name: "AppTripsList",
   mixins: [tripsService],
  data(){
    return {
      trips:[],
+     error:null
     //  isCreator:null
    }
  },
@@ -63,11 +71,13 @@ export default {
 
  created(){
     this.getAllTrips()
+    
  },
 
 };
 </script>
 
 <style scoped>
+
 
 </style>

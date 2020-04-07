@@ -1,6 +1,8 @@
   <template>
   <div id="createForm">
     <v-app class="nobackground">
+    <v-alert v-if="error" type="error">{{error}}</v-alert>
+    <v-alert v-if="success" type="success">{{success}}</v-alert>
       <v-form @submit.prevent="onSubmit">
         <v-container v-if="trip">
           <v-row>

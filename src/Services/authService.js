@@ -22,7 +22,10 @@ export const authService={
                 })
                 .then(() => {
                     this.success='Successful registration!'
-                    this.$router.push( "/login");
+                    setTimeout(()=>{
+                        this.$router.push({path: "/login"} ) 
+                    },1000)
+                    // this.$router.push( "/login");
                 })
             }) .catch(err => {
                 this.error = err.message;
@@ -37,11 +40,33 @@ export const authService={
             .then(() => {
             //    let username=data.user.displayName
             //   console.log(data.user);
-              this.$router.push({path: "/"} );
+            this.success='Successful login!'
+            setTimeout(()=>{
+                this.$router.push({path: "/"} ) 
+            },1000)
+            // this.$router.push({path: "/"} ) 
             })
             .catch(err => {
               this.error = err.message;
             });
+        },
+
+        logout(){
+            firebase.auth().signOut().then(()=>{
+                if(this.$router.currentRoute.path!=='/'){
+                   this.$router.push('/')
+                } else {
+                  this.$router.push('/').catch(()=>{})
+                }
+              })
+              .catch(()=>{})
+        },
+
+        userInfo(){
+            if(firebase.auth().currentUser!==null){
+                this.email= firebase.auth().currentUser.email
+                this.displayName= firebase.auth().currentUser.displayName
+            }
         }
     }
 }

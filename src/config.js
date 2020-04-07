@@ -15,5 +15,3 @@ import 'firebase/firestore'
 
  firebase.initializeApp(config);
 export const firestore = firebase.firestore();
-// export const firestore = db.database();
-// export const storage = firebase.storage();

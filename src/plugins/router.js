@@ -11,6 +11,7 @@ import TripsList from '../components/trips/TripsList'
 import TripCreate from '../components/trips/TripCreate'
 import TripDetails from '../components/trips/TripDetails'
 import TripEdit from '../components/trips/TripEdit'
+import TripsUser from '../components/trips/TripsUser'
 
 function authGuard(to,from,next){
 if(!firebase.auth().currentUser){
@@ -28,6 +29,7 @@ const routes= [
     {path:'/register', component: RegisterForm},
     {path:'/trips-list', component: TripsList, beforeEnter:authGuard},
     {path:'/trip-create', component: TripCreate, beforeEnter:authGuard},
+    {path:'/trips-user', component: TripsUser, beforeEnter:authGuard},
     {path:'/trip-edit/:id', name:'tripEdit', component: TripEdit, beforeEnter:authGuard},
     {path:'/trip-details/:id', name:'tripDetails',component: TripDetails, beforeEnter:authGuard},
     {path:'*',component: LoginForm},
