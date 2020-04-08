@@ -22,6 +22,6 @@ Logged in user can:
 ## Project setup
 
 npm install
-## Compiles and hot-reloads for development
+## Run this thing 
 
 npm run serve
