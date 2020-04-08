@@ -1,9 +1,9 @@
 <template>
   <div>
-    <!-- <v-layout class = "bg" v-if="trips.length===0" row wrap>
-      <div > -->
-    <!-- <h1 v-if="trips.length===0">Sorry there are no trips to show you. Come back a little later :)</h1> -->
-      <!-- </div>
+    <!-- <v-layout class = "bg" v-if="!isTrips" row wrap>
+      <div >
+    <h1 v-if="!isTrips">Sorry there are no trips to show you. Come back a little later :)</h1>
+      </div>
     </v-layout > -->
     <v-alert v-if="error" type="error">{{error}}</v-alert>
     <v-layout row wrap>
@@ -59,8 +59,7 @@ export default {
  data(){
    return {
      trips:[],
-     error:null
-    //  isCreator:null
+     error:null,
    }
  },
   filters: {
@@ -71,13 +70,23 @@ export default {
 
  created(){
     this.getAllTrips()
-    
  },
 
 };
 </script>
 
 <style scoped>
-
+.bg{
+    background-image: url("https://i.picsum.photos/id/300/4272/2848.jpg");
+  background-size: cover;
+  height: 100vh;
+  position: relative;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+h1{
+  margin-top: 200px;
+}
 
 </style>

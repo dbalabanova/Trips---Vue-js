@@ -30,7 +30,9 @@
             </v-col>
           </v-row>
           <v-row>
-            <v-col cols="12" md="6">
+
+            <v-col class="pa-2" cols="12" md="6" >
+                
               <v-text-field 
               @blur="$v.imagePath.$touch()" 
               v-model="imagePath" 
@@ -46,6 +48,7 @@
                 >This field is required</v-alert>
               </template>
             </v-col>
+            <v-img class="ml-auto" :src="imagePath"  aspect-ratio="3.0" contain></v-img>
           </v-row>
 
           <v-row>
@@ -137,6 +140,8 @@ export default {
 }
 #createForm {
   background-image: url("https://i.picsum.photos/id/300/4272/2848.jpg");
+  /* background-image: url("https://i.pinimg.com/564x/7b/ad/69/7bad692dd746af08050131dd8bd1c61c.jpg"); */
+  /* background-image: url("https://images.unsplash.com/photo-1565115868297-2e5de855ac7e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80"); */
   background-size: cover;
   height: 100vh;
   position: relative;

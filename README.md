@@ -24,3 +24,9 @@ Version CDN
 
 ## Vuelidate is used for validation 
 
+## Project setup
+
+npm install
+## Compiles and hot-reloads for development
+
+npm run serve

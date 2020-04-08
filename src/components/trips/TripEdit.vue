@@ -31,7 +31,6 @@
           </v-row>
           <v-row>
             <v-col cols="12" md="6">
-      <v-img :src="imagePath"  aspect-ratio="3.0" contain></v-img>
               <v-text-field 
               @blur="$v.imagePath.$touch()" 
               v-model="imagePath" 
@@ -47,6 +46,7 @@
                 >This field is required</v-alert>
               </template>
             </v-col>
+      <v-img :src="imagePath"  aspect-ratio="3.0" contain></v-img>
           </v-row>
 
           <v-row>

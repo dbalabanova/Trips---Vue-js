@@ -12,7 +12,7 @@ export const tripsService = {
             imagePath:'',
             description:'',
             error:'',
-            success:''
+            success:'',
         }
     },
   methods: {
@@ -28,9 +28,9 @@ export const tripsService = {
         isCreator:doc.data().creatorId===firebase.auth().currentUser.uid
       }
        this.trips.push(data)
+
      })
    })
-//ДА сИ ИЗПИША ГРЕШКАТА И ДА СИ ИЗПИША СЪКСЕСА
    .catch((err)=>{this.error=err.message})
  },
  getUserTrips(){
