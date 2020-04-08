@@ -16,11 +16,6 @@ Logged in user can:
 
 ## Vuetify is used for nicer look 
 
-Vuetify Logo
-
-travis ci badge Coverage Downloads Downloads
-License zenhub Chat
-Version CDN
 
 ## Vuelidate is used for validation 
 
