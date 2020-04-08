@@ -5,7 +5,7 @@
             <v-row align="center">
           <v-col class="text-center" cols="12" sm="4">
             <div class="my-2">
-              <v-btn  color="teal" to="/trips-list" active-class="active">
+              <v-btn  class="separated"  color="teal" to="/trips-list" active-class="active">
             <!-- <router-link 
             tag="v-btn"
             color="orange"
@@ -22,7 +22,7 @@
           </v-col>
         </v-row>
     <v-row justify="space-around">
-      <v-img :src="trip.imagePath" aspect-ratio="3.0" contain></v-img>
+      <v-img :src="trip.imagePath"  aspect-ratio="3.0" contain></v-img>
     </v-row>
         <div class="subheading pt-4">{{trip.name}}</div>
 

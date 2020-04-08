@@ -1,8 +1,5 @@
-// import axios from "axios";
 import {firestore} from '../config'
 import * as firebase from "firebase";
-// import 'firebase/auth'
-// import  firestore from 'firebase/firestore'
 
 export const tripsService = {
     data(){
@@ -54,6 +51,7 @@ export const tripsService = {
       })
        
      })
+     .catch((err)=>{this.error=err.message})
    }
  },
 
@@ -71,7 +69,6 @@ export const tripsService = {
       this.key=this.trip.id
     }
 })
-//ДА сИ ИЗПИША ГРЕШКАТА И ДА СИ ИЗПИША СЪКСЕСА
 .catch((err)=>{this.error=err.message})
  },
  deleteTrip(key){
@@ -82,7 +79,6 @@ export const tripsService = {
      },1000)
      
    })
-//ДА сИ ИЗПИША ГРЕШКАТА И ДА СИ ИЗПИША СЪКСЕСА
   .catch((err)=>{this.error=err.message})  
  },
  createTrip(data){
@@ -100,7 +96,6 @@ return firestore.collection('trips').add(tr).then(()=>{
    this.$router.push('/trips-list')
   },1000)
 })
-//ДА сИ ИЗПИША ГРЕШКАТА И ДА СИ ИЗПИША СЪКСЕСА
 .catch((err)=>{this.error=err.message})
   }
  },
@@ -113,7 +108,6 @@ return firestore.collection('trips').add(tr).then(()=>{
       this.description=doc.data().description
 
 })
-//ДА сИ ИЗПИША ГРЕШКАТА И ДА СИ ИЗПИША СЪКСЕСА
 .catch((err)=>{this.error=err.message})
  },
 
@@ -131,10 +125,8 @@ return firestore.collection('trips').add(tr).then(()=>{
     setTimeout(()=>{
      this.$router.push('/trip-details/'+id)
     },1000)
-   
-    // this.$router.push('/trip-details/'+id)
+
   })
-//ДА сИ ИЗПИША ГРЕШКАТА И ДА СИ ИЗПИША СЪКСЕСА
   .catch((err)=>{this.error=err.message})
  }
 }

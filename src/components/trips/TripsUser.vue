@@ -1,10 +1,12 @@
 <template>
   <div>
     <v-container fluid>
+    <v-alert v-if="error" type="error">{{error}}</v-alert>
+
       <v-row>
         <v-col cols="12" lg="6">
           <v-card>
-            <v-card-title class="subheading font-weight-bold">User Information</v-card-title>
+            <v-card-title class="subheading font-weight-bold">USER INFORMATION</v-card-title>
             <v-divider></v-divider>
             <v-list dense>
               <v-list-item>
@@ -21,7 +23,7 @@
                 <v-list-item-content>Number of posted Trips:</v-list-item-content>
                 <v-list-item-content class="align-end">{{ trips.length }}</v-list-item-content>
               </v-list-item>
-              <v-btn v-if="trips.length" color="orange lighten-2" @click="onShow">See trips</v-btn>
+              <v-btn v-if="trips.length" color="orange lighten-2" @click="onShow">{{btnText}}</v-btn>
             </v-list>
           </v-card>
         </v-col>
@@ -32,7 +34,7 @@
       <v-flex lg4 v-for="trip of trips" :key="trip.id">
         <v-row align="center">
           <v-card flat class="ma-3" elevation="1" max-width="400">
-            <v-img class="white--text align-end" height="200px" :src="trip.imagePath">
+            <v-img class="white--text align-end" height="200px" :src="trip.imagePath" alt="https://www.hopkinsmedicine.org/-/media/feature/noimageavailable.ashx">
               <v-card-title>{{trip.name}}</v-card-title>
             </v-img>
             <v-card-text class="text--primary">
@@ -75,7 +77,10 @@ export default {
   data() {
     return {
       trips: [],
-      show: false
+      show: false,
+      btnText:'See Trips',
+      error:''
+
     };
   },
   filters: {
@@ -90,6 +95,12 @@ export default {
   methods:{
       onShow(){
           this.show=!this.show
+          if(this.show){
+              this.btnText='Hide trips'
+          }
+          else{
+              this.btnText='See trips'
+          }
       }
   }
 };
