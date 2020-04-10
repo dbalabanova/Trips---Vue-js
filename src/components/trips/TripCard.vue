@@ -7,10 +7,8 @@
           <v-card-text class="text--primary">
             <div>{{trip.description | sliceText }}...</div>
           </v-card-text>
-
           <v-card-actions> 
             <v-btn  v-if="trip.isCreator" color="orange" text >
-             
             <router-link 
             color="orange"
             :to="{ name:'tripEdit', params:{id:trip.id}}" 
