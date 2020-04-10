@@ -10,7 +10,7 @@
 import AppHeader from './components/shared/Header'
 import AppFooter from './components/shared/Footer'
 import * as firebase from "firebase";
-import 'firebase/auth'
+// import 'firebase/auth'
 
 export default {
   name: 'App',

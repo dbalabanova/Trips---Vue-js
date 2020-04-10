@@ -30,7 +30,7 @@
       </v-row>
     </v-container>
 
-    <v-layout row wrap v-if="show">
+    <v-layout  fluid row wrap v-if="show">
       <v-flex lg4 v-for="trip of trips" :key="trip.id">
         <v-row align="center">
           <v-card flat class="ma-3" elevation="1" max-width="400">
@@ -69,17 +69,17 @@
 </template>
 
 <script>
-import { tripsService } from "../../Services/tripsServices";
-import { authService } from "../../Services/authService";
+import { tripsService } from "../../servicesLayer/tripsServices";
+import { authService } from "../../servicesLayer/authService";
 export default {
   name: "AppTripsUser",
   mixins: [tripsService, authService],
   data() {
     return {
-      trips: [],
+    //   trips: [],
       show: false,
       btnText:'See Trips',
-      error:''
+    //   error:''
 
     };
   },

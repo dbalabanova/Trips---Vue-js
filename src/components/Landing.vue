@@ -11,7 +11,7 @@
 
 <script>
 import firebase from 'firebase' 
-import { authService } from "../Services/authService";
+import { authService } from "../servicesLayer/authService";
 
 export default {
   name: 'AppLanding',

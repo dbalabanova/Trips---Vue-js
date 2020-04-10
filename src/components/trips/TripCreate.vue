@@ -90,8 +90,8 @@
 </template>
 
 <script>
-import { required, minLength, maxLength} from "vuelidate/lib/validators";
-import  {tripsService}  from "../../Services/tripsServices";
+import { required, minLength, maxLength} from "vuelidate/lib/validators"
+import {tripsService} from '../../servicesLayer/tripsServices'
 // import {firestore} from '../../config'
 
 export default {
@@ -99,12 +99,12 @@ export default {
   mixins: [tripsService],
   data() {
     return {
-      trip:{},
-      name: "",
-      imagePath: "",
-      description: "",
-      error:'',
-      success:''
+      // trip:{},
+      // name: "",
+      // imagePath: "",
+      // description: "",
+      // error:'',
+      // success:''
     };
   },
   validations: {

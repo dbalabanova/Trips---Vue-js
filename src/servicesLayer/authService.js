@@ -44,7 +44,6 @@ export const authService={
             setTimeout(()=>{
                 this.$router.push({path: "/"} ) 
             },1000)
-            // this.$router.push({path: "/"} ) 
             })
             .catch(err => {
               this.error = err.message;

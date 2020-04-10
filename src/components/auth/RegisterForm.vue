@@ -118,8 +118,7 @@
 
 <script>
 import { required, email, minLength, sameAs } from "vuelidate/lib/validators";
-
-import {authService} from '../../Services/authService'
+import {authService} from '../../servicesLayer/authService'
 
 export default {
   name: "AppRegister",

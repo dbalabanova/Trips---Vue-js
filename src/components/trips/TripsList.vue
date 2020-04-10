@@ -1,10 +1,6 @@
 <template>
   <div>
-    <!-- <v-layout class = "bg" v-if="!isTrips" row wrap>
-      <div >
-    <h1 v-if="!isTrips">Sorry there are no trips to show you. Come back a little later :)</h1>
-      </div>
-    </v-layout > -->
+
     <v-alert v-if="error" type="error">{{error}}</v-alert>
     <v-layout row wrap>
       <v-flex lg4 v-for="trip of trips" :key="trip.id">
@@ -51,15 +47,15 @@
 </template>
 
 <script>
-import  {tripsService}  from "../../Services/tripsServices";
+import  {tripsService}  from "../../servicesLayer/tripsServices";
 
 export default {
   name: "AppTripsList",
   mixins: [tripsService],
  data(){
    return {
-     trips:[],
-     error:null,
+    //  trips:[],
+    //  error:null,
    }
  },
   filters: {

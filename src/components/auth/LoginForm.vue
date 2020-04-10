@@ -78,9 +78,8 @@
 
 <script>
 import { required, email, minLength } from "vuelidate/lib/validators";
-// import * as firebase from "firebase";
-// import 'firebase/auth'
-import {authService} from '../../Services/authService'
+
+import {authService} from '../../servicesLayer/authService'
 
 export default {
   name: "AppLogin",

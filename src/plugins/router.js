@@ -15,8 +15,6 @@ import TripsUser from '../components/trips/TripsUser'
 
 function authGuard(to,from,next){
 if(!firebase.auth().currentUser){
-    console.log('authguard')
-    console.log(firebase.auth().currentUser)
     next('/login')
 } else{
     next()
@@ -33,8 +31,7 @@ const routes= [
     {path:'/trip-edit/:id', name:'tripEdit', component: TripEdit, beforeEnter:authGuard},
     {path:'/trip-details/:id', name:'tripDetails',component: TripDetails, beforeEnter:authGuard},
     {path:'*',component: LoginForm},
-    
-  ]
+      ]
 
   Vue.use(VueRouter)
 

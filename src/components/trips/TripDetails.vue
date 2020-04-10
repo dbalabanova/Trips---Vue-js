@@ -6,17 +6,7 @@
           <v-col class="text-center" cols="12" sm="4">
             <div class="my-2">
               <v-btn  class="separated"  color="teal" to="/trips-list" active-class="active">
-            <!-- <router-link 
-            tag="v-btn"
-            color="orange"
-            to="/trips-list" 
-            class="nav-item nav-link" 
-            active-class="active" 
-            exact
-            >             -->
             Go back to list
-            <!-- </router-link > -->
-                
                 </v-btn>
             </div>
           </v-col>
@@ -38,16 +28,7 @@
              :to="{ name:'tripEdit', params:{id:trip.id}}"
              active-class="active"  
              >            
-            <!-- <router-link 
-            tag="v-btn"
-            color="orange"
-            :to="{ name:'tripEdit', params:{id:trip.id}}" 
-            class="nav-item nav-link" 
-            active-class="active" 
-            exact
-            >             -->
             Edit
-            <!-- </router-link > -->
             </v-btn> 
             <v-btn 
             @click="onDeleteTrip" 
@@ -61,16 +42,15 @@
 </template>
 
 <script>
-import  {tripsService}  from "../../Services/tripsServices";
-// import { firestore } from '../../config';
+import  {tripsService}  from "../../servicesLayer/tripsServices";
 
 export default {
 name: "AppTripDetails",
 mixins: [tripsService],
 data(){
     return {
-        trip:null,
-        success:''
+        // trip:null,
+        // success:''
     }
 },
 created(){
