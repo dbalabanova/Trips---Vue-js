@@ -1,5 +1,4 @@
 <template>
-
         <v-card flat class="ma-3" elevation="1" max-width="400">
           <v-img class="white--text align-end " height="200px" :src="trip.imagePath">
             <v-card-title>{{trip.name}}</v-card-title>
@@ -40,11 +39,6 @@ export default {
     props:{
         trip:Object
     },
-data(){
-    return{
-
-    }
-},
   filters: {
     sliceText: function(value) {
       return (value = value.slice(0, 100));

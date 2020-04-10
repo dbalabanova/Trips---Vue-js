@@ -80,8 +80,8 @@
 </template>
 
 <script>
-// import firebase from 'firebase' 
 import {authService} from '../../servicesLayer/authService'
+
 export default {
   name: "AppHeader",
   props:{

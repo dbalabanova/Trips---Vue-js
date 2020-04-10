@@ -47,12 +47,7 @@ import  {tripsService}  from "../../servicesLayer/tripsServices";
 export default {
 name: "AppTripDetails",
 mixins: [tripsService],
-data(){
-    return {
-        // trip:null,
-        // success:''
-    }
-},
+
 created(){
      this.getTripById()
 

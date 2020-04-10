@@ -1,6 +1,5 @@
 <template>
   <div>
-
     <v-alert v-if="error" type="error">{{error}}</v-alert>
     <v-layout row wrap>
       <v-flex lg4 v-for="trip of trips" :key="trip.id">
@@ -15,24 +14,13 @@
 <script>
 import  {tripsService}  from "../../servicesLayer/tripsServices";
 import AppTripCard from './TripCard'
+
 export default {
   name: "AppTripsList",
   mixins: [tripsService],
    components:{
      AppTripCard
  },
-//  data(){
-//    return {
-//     //  trips:[],
-//     //  error:null,
-//    }
-//  },
-//   // filters: {
-//   //   sliceText: function(value) {
-//   //     return (value = value.slice(0, 100));
-//   //   }
-//   // },
-
  created(){
     this.getAllTrips()
  },

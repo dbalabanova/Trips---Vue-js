@@ -78,7 +78,6 @@
 
 <script>
 import { required, email, minLength } from "vuelidate/lib/validators";
-
 import {authService} from '../../servicesLayer/authService'
 
 export default {

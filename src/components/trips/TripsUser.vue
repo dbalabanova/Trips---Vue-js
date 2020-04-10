@@ -46,6 +46,7 @@
 import { tripsService } from "../../servicesLayer/tripsServices";
 import { authService } from "../../servicesLayer/authService";
 import AppTripCard from './TripCard'
+
 export default {
   name: "AppTripsUser",
   components:{

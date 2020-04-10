@@ -92,21 +92,10 @@
 <script>
 import { required, minLength, maxLength} from "vuelidate/lib/validators"
 import {tripsService} from '../../servicesLayer/tripsServices'
-// import {firestore} from '../../config'
 
 export default {
   name: "AppTripCreate",
   mixins: [tripsService],
-  data() {
-    return {
-      // trip:{},
-      // name: "",
-      // imagePath: "",
-      // description: "",
-      // error:'',
-      // success:''
-    };
-  },
   validations: {
     name: {
       required,

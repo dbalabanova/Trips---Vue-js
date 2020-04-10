@@ -90,20 +90,10 @@
 <script>
 import { required, minLength, maxLength} from "vuelidate/lib/validators";
 import  {tripsService}  from "../../servicesLayer/tripsServices";
-// import { firestore } from '../../config';
 
 export default {
   name: "AppTripEdit",
   mixins: [tripsService],
-  data() {
-    return {
-      // key:this.$route.params.id,
-      // trip:{},
-      // name: "",
-      // imagePath: "",
-      // description: ""
-    };
-  },
   validations: {
     name: {
       required,
