@@ -33,7 +33,9 @@
     <v-layout  fluid row wrap v-if="show">
       <v-flex lg4 v-for="trip of trips" :key="trip.id">
         <v-row align="center">
-          <v-card flat class="ma-3" elevation="1" max-width="400">
+          <app-trip-card :trip="trip"></app-trip-card>
+
+          <!-- <v-card flat class="ma-3" elevation="1" max-width="400">
             <v-img class="white--text align-end" height="200px" :src="trip.imagePath" alt="https://www.hopkinsmedicine.org/-/media/feature/noimageavailable.ashx">
               <v-card-title>{{trip.name}}</v-card-title>
             </v-img>
@@ -61,7 +63,7 @@
                 >Details</router-link>
               </v-btn>
             </v-card-actions>
-          </v-card>
+          </v-card> -->
         </v-row>
       </v-flex>
     </v-layout>
@@ -71,8 +73,12 @@
 <script>
 import { tripsService } from "../../servicesLayer/tripsServices";
 import { authService } from "../../servicesLayer/authService";
+import AppTripCard from './TripCard'
 export default {
   name: "AppTripsUser",
+  components:{
+      AppTripCard
+  },
   mixins: [tripsService, authService],
   data() {
     return {
