@@ -37,7 +37,10 @@
 export default {
     name:"AppTripCard",
     props:{
-        trip:Object
+        trip:{
+        type:Object,
+        required:true
+        }
     },
   filters: {
     sliceText: function(value) {

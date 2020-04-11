@@ -37,8 +37,6 @@ export const authService={
             .auth()
             .signInWithEmailAndPassword(this.email, this.password)
             .then(() => {
-            //    let username=data.user.displayName
-            //   console.log(data.user);
             this.success='Successful login!'
             setTimeout(()=>{
                 this.$router.push({path: "/"} ) 

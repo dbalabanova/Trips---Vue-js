@@ -17,7 +17,10 @@ export default {
   name: 'AppLanding',
   mixins: [ authService],
   props: {
-    isLoggedIn: Boolean
+    isLoggedIn: {
+      type:Boolean,
+      required:true
+    }
   },
   data(){
     return {
